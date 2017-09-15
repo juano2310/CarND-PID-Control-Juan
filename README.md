@@ -23,7 +23,7 @@ I decided to optimize at 50 mph and to optimize for all the track. The measure u
 
 The hyperparameters were tuned manually because the track left little room for error, and when attempting to automate parameter optimization (such as Twiddle) it was very common for the car to leave the track. Once I found parameters that were able to get the car around the track I was able to add the Twiddle algorithm.
 
-Finally, when the Twiddle was correctly changed the coefficients, I increased the search intervals by 10%
+Finally, when Twiddle correctly changed the coefficients, I increased the search intervals by 10%
 
 The overall satisfaction with this project isn't too high. The car bouncing around the track could make any human uncomfortable and can't be deployed as is.
 
