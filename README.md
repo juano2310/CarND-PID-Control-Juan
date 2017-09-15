@@ -3,6 +3,32 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Project Description
+
+The purpose of this project was to "build a PID controller and tune the PID hyperparameters by applying the general processing flow as described in the lessons," and to "test your solution on the simulator!" The simulator provides cross-track error (CTE), speed, and steering angle data via local websocket. The PID (proportional/integral/differential) controller must respond with steering and throttle commands to drive the car reliably around the simulator track.
+
+---
+
+## Reflections
+
+I would like to begin describing the effect each of the P, I, D components had in my implementation.
+
+* The P (proportional) was the component that affected the most the car's behavior. Since it causes the car to steer proportional to the car's distance from the lane center.
+
+* The D (differential) component prevents the P component's from overshooting the center line. This parameter helps smooth the way the car approach the center.
+
+* The I (integral) is the aggregation of the errors cumulated along time. Since some systematic bias may exist when applying corrections the aggregation may point out how the bias is contributing to the error generation and help reducing it by applying the correct correction.
+
+I decided to optimize at 50 mph and to optimize for all the track. The measure used for evaluating the fitness of the coefficients has been the mean squared CTE, a measure that penalizes the presence of high CTE reported during the track.
+
+The hyperparameters were tuned manually because the track left little room for error, and when attempting to automate parameter optimization (such as Twiddle) it was very common for the car to leave the track. Once I found parameters that were able to get the car around the track I was able to add the Twiddle algorithm.
+
+Finally, when the Twiddle was correctly changed the coefficients, I increased the search intervals by 10%
+
+The overall satisfaction with this project isn't too high. The car bouncing around the track could make any human uncomfortable and can't be deployed as is.
+
+---
+
 ## Dependencies
 
 * cmake >= 3.5
@@ -19,7 +45,7 @@ Self-Driving Car Engineer Nanodegree Program
   * Run either `./install-mac.sh` or `./install-ubuntu.sh`.
   * If you install from source, checkout to commit `e94b6e1`, i.e.
     ```
-    git clone https://github.com/uWebSockets/uWebSockets 
+    git clone https://github.com/uWebSockets/uWebSockets
     cd uWebSockets
     git checkout e94b6e1
     ```
@@ -33,7 +59,7 @@ There's an experimental patch for windows in this [PR](https://github.com/udacit
 1. Clone this repo.
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./pid`. 
+4. Run it: `./pid`.
 
 ## Editor Settings
 
@@ -93,4 +119,3 @@ still be compilable with cmake and make./
 
 ## How to write a README
 A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
